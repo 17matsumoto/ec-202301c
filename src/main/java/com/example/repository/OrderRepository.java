@@ -49,7 +49,7 @@ public class OrderRepository {
 			// 現在検索されているID
 			int nowOrderId = rs.getInt("id");
 
-			// 注文
+			// 前のIDと違うIDであればセット開始
 			if (nowOrderId != beforeorderId) {
 				Order order = new Order();
 				order.setId(nowOrderId);
@@ -69,9 +69,10 @@ public class OrderRepository {
 			}
 
 			int nowOrderItemId = rs.getInt("oi_id");
-			// 注文商品
+			// 前の注文商品IDと違う注文商品IDであればセット開始
 			if (beforeOrderItemId != nowOrderItemId) {
 				OrderItem orderItem = new OrderItem();
+				
 				orderItem.setId(rs.getInt("oi_id"));
 				orderItem.setItemId(rs.getInt("oi_item_id"));
 				orderItem.setOrderId(rs.getInt("oi_order_id"));
@@ -90,7 +91,7 @@ public class OrderRepository {
 				orderItem.setOrderToppingList(orderToppingsList);
 				orderItemList.add(orderItem);
 			}
-			// 注文トッピング
+			// 注文トッピングへセット
 			if (rs.getInt("ot_id") != 0) {
 				OrderTopping orderTopping = new OrderTopping();
 				orderTopping.setId(rs.getInt("ot_id"));
@@ -105,7 +106,7 @@ public class OrderRepository {
 				orderTopping.setTopping(topping);
 				orderToppingsList.add(orderTopping);
 			}
-
+			//現在のidに変更
 			beforeorderId = nowOrderId;
 			beforeOrderItemId = nowOrderItemId;
 		}
@@ -119,7 +120,7 @@ public class OrderRepository {
 	 * 注文商品を登録します.
 	 * 
 	 * @param orderTopping 注文商品
-	 * @return インサートした注文商品
+	 * @return 注文商品
 	 */
 	synchronized public Order insert(Order order) {
 
@@ -200,7 +201,5 @@ public class OrderRepository {
 		}
 		return orderList.get(0);
 	}
-	
-	
 
 }

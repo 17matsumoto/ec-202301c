@@ -6,5 +6,5 @@ spring:
     password: postgres
 server:
   servlet:
-    context-path: /ec-202301c
+    context-path: 
 

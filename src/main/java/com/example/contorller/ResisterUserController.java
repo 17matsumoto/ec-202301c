@@ -1,5 +1,7 @@
 package com.example.contorller;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,7 @@ public class ResisterUserController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	
 	/**
 	 * 使用するフォームオブジェクトをリクエストスコープに格納する.
 	 * 
@@ -53,7 +56,6 @@ public class ResisterUserController {
 
 	public String resisterUser(@Validated ResisterUserForm form, BindingResult result, Model model) {
 		// * パスワード確認 *//
-
 		if (!form.getConfirmationPassword().equals(form.getPassword()) || form.getConfirmationPassword().equals("")) {
 			if (form.getConfirmationPassword().equals("")) {
 				result.rejectValue("confirmationPassword", "", "確認用パスワードを入力してください。");
@@ -63,8 +65,11 @@ public class ResisterUserController {
 		}
 
 		// * メールアドレス重複確認 *//
+		System.out.println("確認"+form.getAddress());
 		UserInfo existUser = resisterUserService.findByEmail(form.getEmail());
-		if (existUser != null) {
+		System.out.println(existUser);
+
+		if (Objects.isNull(existUser)) {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
 		}
 
@@ -84,5 +89,7 @@ public class ResisterUserController {
 		resisterUserService.resisterUser(user);
 		return "redirect:/toLogin";
 	}
+	
+	
 
 }

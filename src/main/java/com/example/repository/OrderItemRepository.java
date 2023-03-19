@@ -45,17 +45,19 @@ public class OrderItemRepository {
 	synchronized public OrderItem insert(OrderItem orderItem) {
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(orderItem);
-
 		if (orderItem.getId() == null) {
 
 			String insertSql = "INSERT INTO order_items(item_id,order_id,quantity,size) "
 					+ " VALUES(:itemId,:orderId,:quantity,:size)";
 			KeyHolder keyHolder = new GeneratedKeyHolder();
 			String[] keyColumnNames = { "id" };
+			System.out.println("始まり");
 			template.update(insertSql, param, keyHolder, keyColumnNames);
 			orderItem.setId(keyHolder.getKey().intValue());
 			System.out.println(keyHolder.getKey() + "が割り当てられました");
+
 		}
+
 		return orderItem;
 	}
 

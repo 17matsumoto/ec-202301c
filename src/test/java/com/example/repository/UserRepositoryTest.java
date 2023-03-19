@@ -14,6 +14,12 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.example.domain.UserInfo;
 
+/**
+ * ユーザーリポジトリーの単体テストを行う.
+ * 
+ * @author matsumotoyuyya
+ *
+ */
 @SpringBootTest
 class UserRepositoryTest {
 

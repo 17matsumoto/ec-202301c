@@ -27,6 +27,7 @@ public class LoginLogoutUserController {
 		if (error != null) {
 			System.err.println("login failed");
 			model.addAttribute("errorMessage", "メールアドレスまたはパスワードが不正です。");
+			
 		}
 		return "/materialize-version/login.html";
 

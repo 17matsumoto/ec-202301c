@@ -63,7 +63,6 @@ public class ShoppingCartService {
 		}
 		OrderItem orderItemInfo = orderitemRepository.insert(orderItem);
 		
-		
 		// 注文トッピングインサート, nullの時はインサートなし
 		OrderTopping orderTopping = new OrderTopping();
 		if (form.getToppingIdList() != null) {
@@ -74,6 +73,7 @@ public class ShoppingCartService {
 			}
 		}
 	}
+	
 
 	
 
