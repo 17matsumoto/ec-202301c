@@ -23,9 +23,6 @@ public class ShowItemListController {
 
 	@Autowired
 	private ShowItemListService showItemListService;
-	
-	// 1ページに表示する商品数は6枚
-		private static final int VIEW_SIZE = 6;
 
 	/**
 	 * 商品一覧画面に遷移.
@@ -51,14 +48,10 @@ public class ShowItemListController {
 
 	@GetMapping("/findByName")
 	public String findByName(String name, String order, Model model) {
-		if (name.equals("")) {
-			model.addAttribute("result", "検索結果が0件の為、全件検索します");
-			return showItemList(order, model);
-		}
 
 		List<Item> itemList = showItemListService.showItemList(name, order);
 
-		if (itemList.size() == 0) {
+		if (itemList.size() == 0 || name.equals("")) {
 			model.addAttribute("result", "検索結果が0件の為、全件検索します");
 			return showItemList(order, model);
 		} else {

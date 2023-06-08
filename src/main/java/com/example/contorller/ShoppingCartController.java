@@ -27,12 +27,13 @@ public class ShoppingCartController {
 	@Autowired
 	private ShoppingCartService shoppingcartService;
 
+	
 	/**
-	 * 商品をカートに追加する.
-	 * 
-	 * @param form  ショッピングカートフォーム
-	 * @param model モデル
-	 * @return toCartへリダイレクト
+	 * 商品をカートに追加します.
+	 * @param form フォーム
+	 * @param model　モデル
+	 * @param loginUser　ログインユーザー
+	 * @return　カート画面表示
 	 */
 	@PostMapping("/insertCart")
 	public String insertCart(ShoppingCartForm form, Model model, @AuthenticationPrincipal LoginUser loginUser) {

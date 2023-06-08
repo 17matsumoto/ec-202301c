@@ -60,7 +60,7 @@ public class OrderController {
 	}
 
 	/**
-	 * 受け取った利用者情報を登録を行います.
+	 * 受け取った利用者情報の登録を行います.
 	 * 
 	 * @param form   オーダーフォーム
 	 * @param result 入力値チェック
@@ -70,13 +70,6 @@ public class OrderController {
 	@PostMapping("/order")
 	public String order(@Validated OrderForm form, BindingResult result, Model model,
 			@AuthenticationPrincipal LoginUser loginUser) {
-		if (form.getDestinationEmail().equals("")) {
-			result.rejectValue("destinationEmail", "", "メールアドレスを入力して下さい");
-		}
-
-		if (form.getDeliveryDate() == null) {
-			result.rejectValue("deliveryDate", null, "配達日を入力してください");
-		}
 
 		if (result.hasErrors()) {
 			System.out.println("エラー時" + form.getIntId());

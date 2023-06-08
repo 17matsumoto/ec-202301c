@@ -55,21 +55,20 @@ public class ResisterUserController {
 	@PostMapping("/resisterUser")
 
 	public String resisterUser(@Validated ResisterUserForm form, BindingResult result, Model model) {
+		System.out.println(form.getConfirmationPassword());
+		System.out.println(form.getPassword());
 		// * パスワード確認 *//
-		if (!form.getConfirmationPassword().equals(form.getPassword()) || form.getConfirmationPassword().equals("")) {
-			if (form.getConfirmationPassword().equals("")) {
-				result.rejectValue("confirmationPassword", "", "確認用パスワードを入力してください。");
-			} else {
+		if (!form.getConfirmationPassword().equals(form.getPassword())) {
 				result.rejectValue("confirmationPassword", "", "パスワードと確認用パスワードが不一致です");
-			}
-		}
+			} 
+		
 
 		// * メールアドレス重複確認 *//
 		System.out.println("確認"+form.getAddress());
 		UserInfo existUser = resisterUserService.findByEmail(form.getEmail());
 		System.out.println(existUser);
 
-		if (Objects.isNull(existUser)) {
+		if (!Objects.isNull(existUser)) {
 			result.rejectValue("email", "", "そのメールアドレスはすでに使われています");
 		}
 
