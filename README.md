@@ -14,11 +14,11 @@
 
 ## インストールとセットアップ
 
-1. プロジェクトをクローンする : 　　git clone https://github.com/17matsumoto/ec-202301c.git
-2. データベースを作成する。Postgresqlで新しいデータベースを作成し、接続情報を設定します。
+1. プロジェクトをクローンする :　git clone https://github.com/17matsumoto/ec-202301c.git
+2. データベースを作成する。: Postgresqlで新しいデータベースを作成し、接続情報を設定します。
 3. データベースの設定を更新する: src/main/resources/application.yml ファイル内のデータベース接続情報を更新します。
-4. プロジェクトをビルドする: gradle build コマンドを実行します。
-5. アプリケーションを実行する: gradle bootRun コマンドを実行します。
+4. プロジェクトを更新する: gradleを更新します。
+5. アプリケーションを実行する: spring boot　Appを実行します。
 6. ブラウザでアプリケーションにアクセスします: http://localhost:8080
 
 
