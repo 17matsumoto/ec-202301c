@@ -23,6 +23,7 @@ public class OrderForm {
 	private String destinationName;
 	/** 宛先Eメール */
 	@Email(message = "メールアドレスの形式が不正です")
+	@NotBlank(message = "メールアドレスを入力して下さい")
 	private String destinationEmail;
 	/** 宛先郵便番号 */
 	@Pattern(regexp = "^[0-9]{3}-[0-9]{4}$", message = "郵便番号形式にしてください")
